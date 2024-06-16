@@ -33,7 +33,7 @@ const StoryList = () => {
   }, [searchTerm, stories]);
 
   return (
-    <Box p={4}>
+    <Box p={4} maxW={{ base: '100%', md: '80%', lg: '60%' }} mx="auto">
       <Box display="flex" justifyContent="space-between" mb={4}>
         <Input
           placeholder="Search stories..."
@@ -46,15 +46,17 @@ const StoryList = () => {
           onClick={toggleColorMode}
         />
       </Box>
-      <VStack spacing={4} align="stretch">
-        {filteredStories.map(story => (
-          <Box key={story.id} p={4} borderWidth="1px" borderRadius="md">
-            <Text fontSize="xl" fontWeight="bold">{story.title}</Text>
-            <Text>Upvotes: {story.score}</Text>
-            <Link href={story.url} color="teal.500" isExternal>Read more</Link>
-          </Box>
-        ))}
-      </VStack>
+      <Box height={{ base: '60vh', md: '80vh' }} overflowY="scroll">
+        <VStack spacing={4} align="stretch">
+          {filteredStories.map(story => (
+            <Box key={story.id} p={4} borderWidth="1px" borderRadius="md">
+              <Text fontSize="xl" fontWeight="bold">{story.title}</Text>
+              <Text>Upvotes: {story.score}</Text>
+              <Link href={story.url} color="teal.500" isExternal>Read more</Link>
+            </Box>
+          ))}
+        </VStack>
+      </Box>
     </Box>
   );
 };
